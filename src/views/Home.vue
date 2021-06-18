@@ -1,18 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h1>{{ message }}</h1>
+    <input type="text" id="datepicker" />
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+<style></style>
 
+<script>
+/* global Pikaday */
+// import axios from "axios";
+// import moment from "moment";
 export default {
-  name: "Home",
-  components: {
-    HelloWorld,
+  data: function () {
+    return {
+      message: "Welcome to Vue.js!",
+    };
   },
+  created: function () {},
+  mounted: function () {
+    var picker = new Pikaday({
+      field: document.getElementById("datepicker"),
+      format: "D MMM YYYY",
+      onSelect: function () {
+        console.log(this.getMoment().format("Do MMMM YYYY"));
+      },
+    });
+    console.log(picker);
+  },
+  methods: {},
 };
 </script>
